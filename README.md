@@ -6,9 +6,11 @@ simple maven cache and proxy in php
 
 Put the script `src/mvncache.php` in the directory you want to be used as maven proxy.
 Next to the script copy the following lines to `.htaccess`:
+
     RewriteEngine On
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^.*$ mvncache.php [L]
+
 Make both files accessible for apache.
 
 ## Possible use in lighttpd
