@@ -12,6 +12,10 @@ $requestedArtifact = str_replace('/mvn', '', $requestedArtifact);
 $baseLocalFolder = __DIR__.'/..';
 $localFolder = $baseLocalFolder.substr($requestedArtifact, 0, strripos($requestedArtifact, '/'));
 
+if ('' == $requestedArtifact) { // no artifact is requested - return
+  sendHttpReturnCodeAndMessage(403, 'Not allowed');
+}
+
 $tempFile = tmpfile();
 foreach ($config['mavenBaseUrls'] as $mvnBaseUrl) {
   $srcUrl = $mvnBaseUrl.$requestedArtifact;
@@ -46,7 +50,7 @@ if (!$found) {
   stream_copy_to_stream($tempFile, $dst);
   if (is_file($dstPath)) {
     chmod($dstPath, 0660);
-    header('Location: http://'.$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"]);
+    header('Location: '.getServerProtocol().'://'.getRequestHostname().$_SERVER["REQUEST_URI"]);
   } else {
     header('HTTP/1.0 404 Not Found');
   }
