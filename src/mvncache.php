@@ -8,7 +8,7 @@ $config = require(__DIR__.'/config/config.inc.php');
 initTheDevStackErrorHandler($config["logfile"]);
 
 $requestedArtifact = $_SERVER["REQUEST_URI"];
-$requestedArtifact = str_replace('/mvn', '', $requestedArtifact);
+$requestedArtifact = preg_replace('/^\/mvn/', '', $requestedArtifact);
 $baseLocalFolder = __DIR__.'/..';
 $localFolder = $baseLocalFolder.substr($requestedArtifact, 0, strripos($requestedArtifact, '/'));
 
