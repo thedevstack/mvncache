@@ -17,6 +17,7 @@ jobs:
           echo "${{ secrets.SSH_RPIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -p "${{ vars.SSH_PORT }}" -H "${{ vars.SSH_HOST }}" > ~/.ssh/known_hosts
+          cat /root/.ssh/id_rsa
       - name: create remote directory
         run: ssh -vv -p "${{ vars.SSH_PORT }}" "${{ vars.SSH_USER }}"@"${{ vars.SSH_HOST }}" 'mkdir -p ${{ vars.SSH_DEPLOY_DIR }}'
       - name: sync .htaccess file
