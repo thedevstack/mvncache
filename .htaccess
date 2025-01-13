@@ -1,3 +1,5 @@
 RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-f [OR]
+RewriteCond %{REQUEST_FILENAME} =maven-metadata.xml [OR]
+RewriteCond %{REQUEST_URI} -SNAPSHOT
 RewriteRule ^.*$ src/mvncache.php [L]
