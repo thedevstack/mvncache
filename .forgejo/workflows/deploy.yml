@@ -18,7 +18,7 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -p "${{ vars.SSH_PORT }}" -H "${{ vars.SSH_HOST }}" > ~/.ssh/known_hosts
       - name: create remote directory
-        run: ssh -p "${{ vars.SSH_PORT }}" "${{ vars.SSH_USER }}"@"${{ vars.SSH_HOST }}" 'mkdir -p ${{ vars.SSH_DEPLOY_DIR }}'
+        run: ssh -vv -p "${{ vars.SSH_PORT }}" "${{ vars.SSH_USER }}"@"${{ vars.SSH_HOST }}" 'mkdir -p ${{ vars.SSH_DEPLOY_DIR }}'
       - name: sync .htaccess file
         run: rsync -avzP -e 'ssh -p ${{ vars.SSH_PORT }}' "$GITHUB_WORKSPACE/.htaccess" "${{ vars.SSH_USER }}@${{ vars.SSH_HOST }}:${{ vars.SSH_DEPLOY_DIR }}/.htaccess"
       - name: sync src folder
