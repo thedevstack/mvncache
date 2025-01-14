@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: install needed packages
         run: apk update && apk add --no-cache rsync openssh-client nodejs git
-      - uses: actions/checkout@v4
+      - uses: https://git.fucktheforce.de/actions/checkout@v4
       - name: install ssh key
         run: |
           mkdir -p ~/.ssh
