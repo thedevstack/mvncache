@@ -5,6 +5,7 @@
  
 return [
   'mavenBaseUrls' => [
+    'https://git.fucktheforce.de/api/packages/thedevstack/maven',
     'https://repo1.maven.org/maven2',
     'https://jcenter.bintray.com',
     'https://jitpack.io/',
